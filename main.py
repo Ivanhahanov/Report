@@ -1,7 +1,7 @@
 import random
 from fpdf import FPDF
 import json
-
+#code alalalal
 class Task:
     task_name = 'Default task'
     task_group = 0
