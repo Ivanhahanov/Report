@@ -1,16 +1,24 @@
 import random
 from fpdf import FPDF
 import json
+#code alalalal
+class Task:
+    task_name = 'Default task'
+    task_group = 0
+    task_weight = task_group
+    deadline = False
+    difficult = 0
+    visit = 0
+    indepentdent = 0
+    description = 'Description'
+
 class Person:
 
     name = 'Name'
-    weights = [1, 3, 1, 2, 3, 2]
-    num_of_tasks = 0
-    deadlines = 0
-    brought_projects = 0
-    difficulty = 0
-    visits = 0
-    independence = 0
+    surname = "Surname"
+    patronymic = "Patronymic"
+    tasks = [] #list of tasks
+
 
     def personal_skills(self):
         return self.weights[0] * self.num_of_tasks + \
