@@ -1,5 +1,6 @@
 import random
 from fpdf import FPDF
+import json
 
 class Task:
     task_name = 'Default task'
@@ -46,6 +47,16 @@ class Person:
         pdf.output("%s.pdf"%self.name)
         return self.name, self.get_mark()
 
+    def create_json(self):
+        data = {
+            'name': self.name,
+            'mark': self.get_mark()
+        }
+        return data
+
+    def save_json(self, data):
+        with open("info.json", 'w') as write_file:
+            json.dump(data, write_file)
 
 def get_best(data):
     best_staff = max(data, key=data.get)
@@ -57,6 +68,8 @@ def get_worse(data):
     worse_staff = min(data, key=data.get)
     worse_mark = data[worse_staff]
     return worse_staff, worse_mark
+
+
 
 
 def main(persons):
