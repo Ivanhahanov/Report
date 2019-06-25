@@ -15,6 +15,8 @@ class Client():
         }
         r = requests.post('http://127.0.0.1:5000/', params=params).text
         data = json.loads(r)
+        if 'status' in data:
+            return False
         print('login success')
         return data
 
@@ -29,12 +31,26 @@ class Client():
     def send(self, data):
         r = requests.post('http://127.0.0.1:5000/send', json=data)
 
+    def get_id(self):
+        return
+
+class Menu(Client):
+
+    def print(self):
+        return self.test()
+
+    def show(self):
+        print()
+
 def main():
     client = Client(debug_mode=True)
     if client.test():
         data = client.login()
-        print(data)
-        client.send(data)
+        if data:
+            print(data)
+            menu = Menu(debug_mode=True)
+            menu.print()
+            client.send(data)
 
 if __name__ == '__main__':
     main()

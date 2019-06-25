@@ -5,24 +5,27 @@ app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
-        user = 'admin'
+        id = '1'
         login = request.args.get('login', None)
         print(login)
         password = request.args.get('password')
         print(password)
         with open("data.json", encoding='utf-8') as write_file:
             data = json.loads(write_file.read())
-        if user in data:
-            name = data[user]
+        if id in data[]:
+            name = data[id]
             if name['login'] == login:
                 if name['password'] == password:
-                    return jsonify(data[user])
+                    return jsonify(data[''])
+        return jsonify({'status': 'error'})
     else:
         return 'get'
+
 
 @app.route('/connect', methods=['GET','POST'])
 def connect():
     return 'ok'
+
 
 @app.route('/send', methods=['GET','POST'])
 def send():

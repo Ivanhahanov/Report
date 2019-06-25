@@ -1,13 +1,14 @@
 import json
-name = 'admin'
+id = '1'
 login = 'admin'
 password = 'secret'
 
 data = {
-    name: {
+    'id':id,
+    'user': {
         'login': login,
         'password': password,
-        'info': 'good stuff',
+        'info': 'Hello, %s'%login,
     }
 }
 
