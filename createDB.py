@@ -15,8 +15,8 @@ data = {
             'task_weight': '',
             'deadline': '',
             'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'visits': '',
+            'independent': '',
             'description': '',
         }]
     },
@@ -30,8 +30,8 @@ data = {
             'task_weight': '',
             'deadline': '',
             'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'visits': '',
+            'independent': '',
             'description': '',
         }]
     },
@@ -45,8 +45,8 @@ data = {
             'task_weight': '',
             'deadline': '',
             'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'visits': '',
+            'independent': '',
             'description': '',
         }]
     }

@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, url_for
 import json
-from main import Person
+import configuration
+from main import Person, Task
 app = Flask(__name__)
+app.config.from_object(configuration)
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
@@ -47,6 +49,20 @@ def send():
     with open("staff.json", 'w') as write_file:
         json.dump(data, write_file)
     return 'ok'
+
+@app.route('/report', methods=['GET','POST'])
+def report():
+    with open("staff.json", encoding='utf-8') as write_file:
+        data = json.loads(write_file.read())
+    data = data['0']
+    p = Person()
+    p.name = data['name']
+    p.patronymic = data['patronymic']
+    p.surname = data['surname']
+    p.tasks = data['tasks']
+    p.calc()
+    p.doc()
+    return 'http://0.0.0.0:5000/static/Ivan.pdf'
 
 if __name__ == '__main__':
     app.run()

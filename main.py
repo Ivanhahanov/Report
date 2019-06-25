@@ -3,13 +3,14 @@ from fpdf import FPDF
 import json
 #code alalalal
 class Task:
+
     task_name = 'Default task'
-    task_group = 0
-    task_weight = task_group
+    task_group = 'group'
+    task_weight = 0
     deadline = False
     difficult = 0
     visit = 0
-    indepentdent = 0
+    independent = 0
     description = 'Description'
 
 class Person:
@@ -18,7 +19,7 @@ class Person:
     surname = "Surname"
     patronymic = "Patronymic"
     tasks = [] #list of tasks
-
+    result = 0
 
     def personal_skills(self):
         return self.weights[0] * self.num_of_tasks + \
@@ -29,6 +30,14 @@ class Person:
     def company_skills(self):
         return self.weights[4] * self.visits + \
                self.weights[5] * self.independence
+
+    def calc(self):
+        for task in self.tasks:
+            res = task['difficult'] + task['visits'] + task['independent']
+            res = res * task['task_weight']
+            print(res)
+            self.result += res
+        print(self.result)
 
     def get_mark(self):
 
@@ -41,11 +50,12 @@ class Person:
         pdf.add_page()
         pdf.set_font("Arial", size=12)
         pdf.cell(200, 10, txt="Report", ln=1, align="C")
-        pdf.cell(200, 10, txt="Name: %s"%self.name, ln=1, align="C")
-        pdf.cell(200, 10, txt="Mark: %s"%self.get_mark(), ln=1, align="C")
+        pdf.cell(200, 10, txt="Name: %s"%self.name, ln=1, align="L")
+        pdf.cell(200, 10, txt="Mark: %s"%self.result, ln=1, align="L")
+        pdf.cell(200, 10, txt="Num of Tasks: %s"%len(self.tasks), ln=1, align="L")
 
-        pdf.output("%s.pdf"%self.name)
-        return self.name, self.get_mark()
+        pdf.output("static/%s.pdf"%self.name)
+        return self.name
 
     def create_json(self):
         data = {

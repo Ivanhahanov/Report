@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, random
 
 class Client():
 
@@ -90,8 +90,8 @@ class Menu(Client):
             'task_weight': input('task_weight: '),
             'deadline': input('deadline: '),
             'difficult': input('difficult: '),
-            'visit': input('visit: '),
-            'indepentdent': input('indepentdent: '),
+            'visits': input('visits: '),
+            'independent': input('independent: '),
             'description': input('description: '),
         }
         return task
@@ -103,11 +103,11 @@ class Menu(Client):
         task = {
             'task_name': 'test',
             'task_group': 'test',
-            'task_weight': 'test',
-            'deadline': 'test',
-            'difficult': 'test',
-            'visit': 'test',
-            'indepentdent': 'test',
+            'task_weight': random.randint(1, 5),
+            'deadline': random.randint(1, 5),
+            'difficult': True,
+            'visits': random.randint(1, 5),
+            'independent': random.randint(1, 5),
             'description': 'test',
         }
         return task
@@ -116,10 +116,15 @@ class Menu(Client):
         # сохранение таска
         self.data['tasks'].append(task)
         print(self.data)
-        answer = input('y/n')
+        #answer = input('y/n')
+        answer = 'y'
         self.data['id'] = self.id
         if answer == 'y':
             r = requests.post('http://127.0.0.1:5000/send', json=self.data)
+
+    def create_report(self):
+        r = requests.post('http://127.0.0.1:5000/report').text
+        return r
 
 
 
@@ -132,8 +137,11 @@ def main():
             menu.print()
             id = menu.show()
             print(id)
-            task = menu.test_new_task()
-            menu.save_task(task)
+
+            # task = menu.test_new_task()
+            # menu.save_task(task)
+            link = menu.create_report()
+            print(link)
 
 if __name__ == '__main__':
     main()
