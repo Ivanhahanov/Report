@@ -43,22 +43,24 @@ class Menu(Client):
         super().__init__(debug_mode)
         self.id = id
 
+    def __init__(self, id):
+        self.id = id
+
     def print(self):
         return self.test()
 
     def show(self):
-
         r = requests.post('http://127.0.0.1:5000/user/%s'%self.id).text
         data = json.loads(r)
         return data
 
 def main():
-    client = Client(debug_mode=True)
+    client = Client(debug_mode=False)
     if client.test():
         data = client.login()
         if data:
             print(data['id'])
-            menu = Menu(id=client.get_id(), debug_mode=True)
+            menu = Menu(id=client.get_id())
             menu.print()
             client.send(data)
             id = menu.show()
