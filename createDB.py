@@ -5,8 +5,7 @@ login = 'admin'
 password = 'secret'
 
 data = {
-    'id': id,
-    'user': {
+    '0': {
         'name': '',
         'surname': '',
         'patronymic': '',

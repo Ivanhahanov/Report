@@ -1,6 +1,8 @@
 import requests, json
 
 class Client():
+
+
     def __init__(self, debug_mode):
         self.debug_mode = debug_mode
 
@@ -18,6 +20,7 @@ class Client():
         if 'status' in data:
             return False
         print('login success')
+        self.id = data['id']
         return data
 
 
@@ -32,25 +35,34 @@ class Client():
         r = requests.post('http://127.0.0.1:5000/send', json=data)
 
     def get_id(self):
-        return
+        return self.id
 
 class Menu(Client):
+
+    def __init__(self, id, debug_mode):
+        super().__init__(debug_mode)
+        self.id = id
 
     def print(self):
         return self.test()
 
     def show(self):
-        print()
+
+        r = requests.post('http://127.0.0.1:5000/user/%s'%self.id).text
+        data = json.loads(r)
+        return data
 
 def main():
     client = Client(debug_mode=True)
     if client.test():
         data = client.login()
         if data:
-            print(data)
-            menu = Menu(debug_mode=True)
+            print(data['id'])
+            menu = Menu(id=client.get_id(), debug_mode=True)
             menu.print()
             client.send(data)
+            id = menu.show()
+            print(id)
 
 if __name__ == '__main__':
     main()
