@@ -9,7 +9,7 @@ data = {
         'name': 'Ivan',
         'surname': 'Hahanov',
         'patronymic': 'Sergeevich',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
             'task_weight': '',
@@ -18,13 +18,13 @@ data = {
             'visit': '',
             'indepentdent': '',
             'description': '',
-        }
+        }]
     },
     '1': {
         'name': 'Natali',
         'surname': 'Darovskikh',
         'patronymic': 'Pavlovna',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
             'task_weight': '',
@@ -33,13 +33,13 @@ data = {
             'visit': '',
             'indepentdent': '',
             'description': '',
-        }
+        }]
     },
     '2': {
         'name': 'Vlad',
         'surname': 'Chernyakov',
         'patronymic': 'Alexandrovich',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
             'task_weight': '',
@@ -48,7 +48,7 @@ data = {
             'visit': '',
             'indepentdent': '',
             'description': '',
-        }
+        }]
     }
 }
 

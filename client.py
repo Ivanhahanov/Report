@@ -44,11 +44,10 @@ class Client():
 
 class Menu(Client):
 
+    data = ''
+
     def __init__(self, id, debug_mode):
         super().__init__(debug_mode)
-        self.id = id
-
-    def __init__(self, id):
         self.id = id
 
     def print(self):
@@ -56,19 +55,85 @@ class Menu(Client):
 
     def show(self):
         r = requests.post('http://127.0.0.1:5000/user/%s'%self.id).text
-        data = json.loads(r)
-        return data
+        self.data = json.loads(r)
+        return self.data
+
+    def change_task(self):
+        # изменение таска
+        i = 0
+        for task in self.data['tasks']:
+
+            print(i, task)
+            i += 1
+        task = input('Enter: ')
+        if task == 'exit':
+                return True
+        while True:
+            i = 0
+            for key, field in self.data['tasks'][int(task)].items():
+                i += 1
+                print(i, key, field)
+            command = input('Enter: ')
+            if command == 'exit':
+                break
+            else:
+                #some problems here
+                pass
+
+    def new_task(self):
+        #создание нового таска
+        print(self.data)
+        task_name = input('Enter task name')
+        task = {
+            'task_name': input('Enter task name: '),
+            'task_group': input('task_group: '),
+            'task_weight': input('task_weight: '),
+            'deadline': input('deadline: '),
+            'difficult': input('difficult: '),
+            'visit': input('visit: '),
+            'indepentdent': input('indepentdent: '),
+            'description': input('description: '),
+        }
+        return task
+
+    def test_new_task(self):
+        #создание нового таска
+        print(self.data)
+
+        task = {
+            'task_name': 'test',
+            'task_group': 'test',
+            'task_weight': 'test',
+            'deadline': 'test',
+            'difficult': 'test',
+            'visit': 'test',
+            'indepentdent': 'test',
+            'description': 'test',
+        }
+        return task
+
+    def save_task(self, task):
+        # сохранение таска
+        self.data['tasks'].append(task)
+        print(self.data)
+        answer = input('y/n')
+        self.data['id'] = self.id
+        if answer == 'y':
+            r = requests.post('http://127.0.0.1:5000/send', json=self.data)
+
+
 
 def main():
-    client = Client(debug_mode=False)
+    client = Client(debug_mode=True)
     if client.test():
         data = client.login()
         if data:
-            menu = Menu(id=client.get_id())
+            menu = Menu(id=client.get_id(), debug_mode=True)
             menu.print()
-            client.send(data)
             id = menu.show()
             print(id)
+            task = menu.test_new_task()
+            menu.save_task(task)
 
 if __name__ == '__main__':
     main()
