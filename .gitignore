@@ -1,4 +1,4 @@
 *.pdf
 venv/
 .idea
-.json
+*.json
