@@ -17,11 +17,16 @@ class Client():
         }
         r = requests.post('http://127.0.0.1:5000/', params=params).text
         data = json.loads(r)
+        print(data)
         if 'status' in data:
             return False
-        print('login success')
-        self.id = data['id']
-        return data
+        if data['id'] != '999':
+            print('login success')
+            self.id = data['id']
+            return data
+        else:
+            print('login error')
+            return None
 
 
     def test(self):
@@ -59,7 +64,6 @@ def main():
     if client.test():
         data = client.login()
         if data:
-            print(data['id'])
             menu = Menu(id=client.get_id())
             menu.print()
             client.send(data)

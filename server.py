@@ -6,9 +6,9 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         login = request.args.get('login', None)
-        print(login)
+        #print(login)
         password = request.args.get('password')
-        print(password)
+        #print(password)
         with open("data.json", encoding='utf-8') as write_file:
             data = json.loads(write_file.read())
 
@@ -16,14 +16,19 @@ def index():
         # Ищем какой id у логин-пароля введенного пользователем
         # Пробегаем по всей БД и возвращаем id (в json)))
         #
+        id = -1
         for id in data:
-            print('login: ', data[id]['login'])
             if login == data[id]['login']:
                 if password == data[id]['password']:
-                    print(data[id]['id'])
+                    #print(data[id]['id'])
                     return jsonify({'id':data[id]['id']})
 
-        # Где то здесь нужно вставить return 'get'
+        return jsonify({'id':'999'})
+
+    # Где то здесь нужно вставить return 'get'
+    else:
+        return 'get'
+
 
         #if login in data:
         #    name = data[id]
