@@ -9,46 +9,46 @@ data = {
         'name': 'Ivan',
         'surname': 'Hahanov',
         'patronymic': 'Sergeevich',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
-        }
+        }]
     },
     '1': {
         'name': 'Natali',
         'surname': 'Darovskikh',
         'patronymic': 'Pavlovna',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
-        }
+        }]
     },
     '2': {
         'name': 'Vlad',
         'surname': 'Chernyakov',
         'patronymic': 'Alexandrovich',
-        'tasks': {
+        'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visit': '',
-            'indepentdent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
-        }
+        }]
     }
 }
 
