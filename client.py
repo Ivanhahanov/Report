@@ -3,8 +3,9 @@ import requests, json, random
 class Client():
 
 
-    def __init__(self, debug_mode):
+    def __init__(self, debug_mode, host):
         self.debug_mode = debug_mode
+        self.host = host
 
     def login(self):
         if self.debug_mode:
@@ -15,7 +16,7 @@ class Client():
             'login': login,
             'password': password,
         }
-        r = requests.post('http://127.0.0.1:5000/', params=params).text
+        r = requests.post(self.host, params=params).text
         data = json.loads(r)
         print(data)
         if 'status' in data:
@@ -30,14 +31,14 @@ class Client():
 
 
     def test(self):
-        test = requests.post('http://127.0.0.1:5000/connect',).text
+        test = requests.post(self.host+'/connect',).text
         if test == 'ok':
             return True
         else:
             print('Error connection')
 
     def send(self, data):
-        r = requests.post('http://127.0.0.1:5000/send', json=data)
+        r = requests.post(self.host+'/send', json=data)
 
     def get_id(self):
         return self.id
@@ -46,15 +47,15 @@ class Menu(Client):
 
     data = ''
 
-    def __init__(self, id, debug_mode):
-        super().__init__(debug_mode)
+    def __init__(self, id, debug_mode, host):
+        super().__init__(debug_mode, host)
         self.id = id
 
     def print(self):
         return self.test()
 
     def show(self):
-        r = requests.post('http://127.0.0.1:5000/user/%s'%self.id).text
+        r = requests.post(self.host+'/user/%s'%self.id).text
         self.data = json.loads(r)
         return self.data
 
@@ -116,30 +117,33 @@ class Menu(Client):
         # сохранение таска
         self.data['tasks'].append(task)
         print(self.data)
-        #answer = input('y/n')
-        answer = 'y'
+        answer = input('y/n')
+        #answer = 'y'
         self.data['id'] = self.id
         if answer == 'y':
-            r = requests.post('http://127.0.0.1:5000/send', json=self.data)
+            r = requests.post(self.host+'/send', json=self.data)
 
     def create_report(self):
-        r = requests.post('http://127.0.0.1:5000/report').text
-        return r
+        if self.id == '0':
+            r = requests.post(self.host+'/adminreport').text
+        else:
+            r = requests.post(self.host+'/report/%s'%self.id).text
+        return self.host+r
 
 
 
 def main():
-    client = Client(debug_mode=True)
+    client = Client(debug_mode=False, host='http://127.0.0.1:5000')
     if client.test():
         data = client.login()
         if data:
-            menu = Menu(id=client.get_id(), debug_mode=True)
+            menu = Menu(id=client.get_id(), debug_mode=False, host='http://127.0.0.1:5000')
             menu.print()
             id = menu.show()
             print(id)
 
-            # task = menu.test_new_task()
-            # menu.save_task(task)
+            task = menu.test_new_task()
+            menu.save_task(task)
             link = menu.create_report()
             print(link)
 

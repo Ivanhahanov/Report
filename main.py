@@ -35,9 +35,7 @@ class Person:
         for task in self.tasks:
             res = task['difficult'] + task['visits'] + task['independent']
             res = res * task['task_weight']
-            print(res)
             self.result += res
-        print(self.result)
 
     def get_mark(self):
 
@@ -54,8 +52,10 @@ class Person:
         pdf.cell(200, 10, txt="Mark: %s"%self.result, ln=1, align="L")
         pdf.cell(200, 10, txt="Num of Tasks: %s"%len(self.tasks), ln=1, align="L")
 
-        pdf.output("static/%s.pdf"%self.name)
+        pdf.output("pdf/%s.pdf"%self.name)
         return self.name
+
+
 
     def create_json(self):
         data = {

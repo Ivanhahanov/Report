@@ -12,11 +12,11 @@ data = {
         'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visits': '',
-            'independent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
         }]
     },
@@ -27,11 +27,11 @@ data = {
         'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visits': '',
-            'independent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
         }]
     },
@@ -42,11 +42,11 @@ data = {
         'tasks': [{
             'task_name': '',
             'task_group': '',
-            'task_weight': '',
-            'deadline': '',
-            'difficult': '',
-            'visits': '',
-            'independent': '',
+            'task_weight': 1,
+            'deadline': 1,
+            'difficult': 1,
+            'visits': 1,
+            'independent': 1,
             'description': '',
         }]
     }
