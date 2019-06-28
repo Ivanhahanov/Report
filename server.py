@@ -80,6 +80,8 @@ def report(id):
     p.tasks = data['tasks']
     p.calc()
     p.doc()
+    #неправильно формируется ссылка
+    #обращается к разным файлам (в корневой, а не в папке пдф)
     return url_for('static', filename='%s.pdf'%p.name)
 
 @app.route('/adminreport/', methods=['GET','POST'])

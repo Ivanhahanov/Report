@@ -10,14 +10,14 @@ data = {
         'surname': 'Hahanov',
         'patronymic': 'Sergeevich',
         'tasks': [{
-            'task_name': '',
-            'task_group': '',
+            'task_name': 'Be in ExpLabs',
+            'task_group': '1',
             'task_weight': 1,
             'deadline': 1,
             'difficult': 1,
             'visits': 1,
             'independent': 1,
-            'description': '',
+            'description': 'No StudSouzz - only programming',
         }]
     },
     '1': {
@@ -25,14 +25,14 @@ data = {
         'surname': 'Darovskikh',
         'patronymic': 'Pavlovna',
         'tasks': [{
-            'task_name': '',
+            'task_name': 'Be in ExpLabs',
             'task_group': '',
             'task_weight': 1,
             'deadline': 1,
             'difficult': 1,
             'visits': 1,
             'independent': 1,
-            'description': '',
+            'description': 'No StudSouzz - only programming',
         }]
     },
     '2': {
@@ -40,14 +40,14 @@ data = {
         'surname': 'Chernyakov',
         'patronymic': 'Alexandrovich',
         'tasks': [{
-            'task_name': '',
+            'task_name': 'Be in ExpLabs',
             'task_group': '',
             'task_weight': 1,
             'deadline': 1,
             'difficult': 1,
             'visits': 1,
             'independent': 1,
-            'description': '',
+            'description': 'No StudSouzz - only programming',
         }]
     }
 }

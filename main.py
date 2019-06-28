@@ -1,7 +1,6 @@
 import random
 from fpdf import FPDF
 import json
-#code alalalal
 class Task:
 
     task_name = 'Default task'
@@ -48,9 +47,20 @@ class Person:
         pdf.add_page()
         pdf.set_font("Arial", size=12)
         pdf.cell(200, 10, txt="Report", ln=1, align="C")
+        pdf.cell(200, 10, txt="Surname: %s"%self.surname, ln=1, align="L")
         pdf.cell(200, 10, txt="Name: %s"%self.name, ln=1, align="L")
+        pdf.cell(200, 10, txt="Patronymic: %s"%self.patronymic, ln=1, align="L")
         pdf.cell(200, 10, txt="Mark: %s"%self.result, ln=1, align="L")
-        pdf.cell(200, 10, txt="Num of Tasks: %s"%len(self.tasks), ln=1, align="L")
+        pdf.cell(200, 10, txt="Number of tasks: %s"%len(self.tasks), ln=1, align="L")
+
+        user_tasks = self.tasks
+        for task in user_tasks:
+            pdf.cell(200, 10, txt="Name of task: %s"%task['task_name'], ln=1, align="L")
+            pdf.cell(200, 10, txt="Description: %s"%task['description'], ln=1, align="L")
+            pdf.cell(200, 10, txt="Deadline: %s"%task['deadline'], ln=1, align="L")
+            pdf.cell(200, 10, txt="Visits: %s"%task['visits'], ln=1, align="L")
+            pdf.cell(200, 10, txt="Independent: %s"%task['independent'], ln=1, align="L")
+
 
         pdf.output("pdf/%s.pdf"%self.name)
         return self.name
